@@ -220,6 +220,8 @@ class Ec2Inventory(object):
         # Destination addresses
         self.destination_variable = config.get('ec2', 'destination_variable')
         self.vpc_destination_variable = config.get('ec2', 'vpc_destination_variable')
+        if config.has_option('ec2', 'tag_destination_variable'):
+            self.tag_destination_variable = config.get('ec2', 'tag_destination_variable')
 
         # Route53
         self.route53_enabled = config.getboolean('ec2', 'route53')
@@ -561,14 +563,28 @@ class Ec2Inventory(object):
             return
 
         # Select the best destination address
-        if instance.subnet_id:
-            dest = getattr(instance, self.vpc_destination_variable, None)
-            if dest is None:
-                dest = getattr(instance, 'tags').get(self.vpc_destination_variable, None)
-        else:
-            dest = getattr(instance, self.destination_variable, None)
-            if dest is None:
-                dest = getattr(instance, 'tags').get(self.destination_variable, None)
+        try:
+            # Try to use a tag first
+            if self.tag_destination_variable.find(u','):
+                dest = ''
+                for i in self.tag_destination_variable.split(u','):
+                    dest = dest + instance.tags[i] + u'.'
+            else:
+                dest = instance.tags[self.tag_destination_variable]
+            while dest.endswith(u'.'):
+                dest = dest[:-1]
+         # And if that did not work
+        except (KeyError, AttributeError):
+            # Prefer the VPC Destination variable
+            if instance.subnet_id:
+                dest = getattr(instance, self.vpc_destination_variable, None)
+                if dest is None:
+                    dest = getattr(instance, 'tags').get(self.vpc_destination_variable, None)
+            else:
+                # Over the default destination variable
+                dest = getattr(instance, self.destination_variable, None)
+                if dest is None:
+                    dest = getattr(instance, 'tags').get(self.destination_variable, None)
 
         if not dest:
             # Skip instances we cannot address (e.g. private VPC subnet)
