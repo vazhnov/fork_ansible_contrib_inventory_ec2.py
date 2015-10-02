@@ -396,7 +396,7 @@ class Ec2Inventory(object):
         parser.add_argument('--refresh-cache', action='store_true', default=False,
                             help='Force refresh of cache by making API requests to EC2 (default: False - use cache files)')
         parser.add_argument('--boto-profile', action='store',
-                           help='Use boto profile for connections to EC2')
+                            help='Use boto profile for connections to EC2')
         self.args = parser.parse_args()
 
     def do_api_calls_update_cache(self):
