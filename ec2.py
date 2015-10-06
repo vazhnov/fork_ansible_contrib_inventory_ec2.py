@@ -129,6 +129,7 @@ from boto import ec2
 from boto import rds
 from boto import elasticache
 from boto import route53
+from boto import vpc
 import six
 
 from six.moves import configparser
@@ -235,6 +236,11 @@ class Ec2Inventory(object):
         self.vpc_destination_variable = config.get('ec2', 'vpc_destination_variable')
         if config.has_option('ec2', 'tag_destination_variable'):
             self.tag_destination_variable = config.get('ec2', 'tag_destination_variable')
+
+        # Include vpc_subnets information?
+        self.vpc_subnets_enabled = True
+        if config.has_option('ec2', 'vpc_subnets'):
+            self.vpc_subnets = config.getboolean('ec2', 'vpc_subnets')
 
         # Route53
         self.route53_enabled = config.getboolean('ec2', 'route53')
@@ -407,6 +413,8 @@ class Ec2Inventory(object):
 
         for region in self.regions:
             self.get_instances_by_region(region)
+            if self.vpc_subnets_enabled:
+                self.get_vpc_subnets_by_region(region)
             if self.rds_enabled:
                 self.get_rds_instances_by_region(region)
             if self.elasticache_enabled:
@@ -445,6 +453,16 @@ class Ec2Inventory(object):
         if conn is None:
             self.fail_with_error("region name: %s likely not supported, or AWS is down.  connection to region failed." % region)
         return conn
+
+    def get_vpc_subnets_by_region(self, region):
+        self.inventory['_meta'].setdefault('vpc_subnets', {})
+        conn = self.connect_to_aws(vpc, region)
+        all_vpcs = conn.get_all_vpcs()
+        for v in all_vpcs:
+            all_subnets = conn.get_all_subnets(filters={'vpc-id': v.id})
+            for s in all_subnets:
+                self.push(self.inventory, 'subnet_in_vpc_' + v.id, s.id)
+                self.inventory['_meta']['vpc_subnets'].update({s.id: {'id': v.id, 'region': region, 'is_default': v.is_default, 'cidr_block': v.cidr_block}})
 
     def get_instances_by_region(self, region):
         ''' Makes an AWS EC2 API call to the list of instances in a particular
