@@ -1,0 +1,159 @@
+{
+  "_meta": {
+    "hostvars": {
+      "local-14-test01.amazon.school-adm.ru": {
+        "ec2__in_monitoring_element": false, 
+        "ec2_ami_launch_index": "0", 
+        "ec2_architecture": "x86_64", 
+        "ec2_client_token": "", 
+        "ec2_dns_name": "ec2-52-91-219-244.compute-1.amazonaws.com", 
+        "ec2_ebs_optimized": false, 
+        "ec2_eventsSet": "", 
+        "ec2_group_name": "", 
+        "ec2_hypervisor": "xen", 
+        "ec2_id": "i-3e62a6ea", 
+        "ec2_image_id": "ami-d05e75b8", 
+        "ec2_instance_profile": "", 
+        "ec2_instance_type": "t2.micro", 
+        "ec2_ip_address": "52.91.219.244", 
+        "ec2_item": "", 
+        "ec2_kernel": "", 
+        "ec2_key_name": "xxx", 
+        "ec2_launch_time": "2015-10-07T13:13:06.000Z", 
+        "ec2_monitored": false, 
+        "ec2_monitoring": "", 
+        "ec2_monitoring_state": "disabled", 
+        "ec2_persistent": false, 
+        "ec2_placement": "us-east-1c", 
+        "ec2_platform": "", 
+        "ec2_previous_state": "", 
+        "ec2_previous_state_code": 0, 
+        "ec2_private_dns_name": "ip-192-168-211-37.ec2.internal", 
+        "ec2_private_ip_address": "192.168.211.37", 
+        "ec2_public_dns_name": "ec2-52-91-219-244.compute-1.amazonaws.com", 
+        "ec2_ramdisk": "", 
+        "ec2_reason": "", 
+        "ec2_region": "us-east-1", 
+        "ec2_requester_id": "", 
+        "ec2_root_device_name": "/dev/sda1", 
+        "ec2_root_device_type": "ebs", 
+        "ec2_security_group_ids": "sg-ac2e3ecb,sg-c43ac8a2,sg-cf3ac8a9", 
+        "ec2_security_group_names": "default,local-14-data,local-14-api", 
+        "ec2_sourceDestCheck": "true", 
+        "ec2_spot_instance_request_id": "", 
+        "ec2_state": "running", 
+        "ec2_state_code": 16, 
+        "ec2_state_reason": "", 
+        "ec2_subnet_id": "subnet-74e5f203", 
+        "ec2_tag_Ansible": "configured", 
+        "ec2_tag_Domain": "amazon.school-adm.ru.", 
+        "ec2_tag_Name": "local-14-test01", 
+        "ec2_tag_Roles": "data,api", 
+        "ec2_virtualization_type": "hvm", 
+        "ec2_vpc_id": "vpc-8d8249e9"
+      }
+    }
+  }, 
+  "all": {
+    "vars": {
+      "vpc_subnets": {
+        "subnet-19a1d37c": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-56a7c333", 
+          "is_default": true, 
+          "region": "us-west-2"
+        }, 
+        "subnet-5964f42e": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-56a7c333", 
+          "is_default": true, 
+          "region": "us-west-2"
+        }, 
+        "subnet-63a6123a": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-56a7c333", 
+          "is_default": true, 
+          "region": "us-west-2"
+        }, 
+        "subnet-74e5f203": {
+          "cidr_block": "192.168.211.0/24", 
+          "id": "vpc-8d8249e9", 
+          "is_default": false, 
+          "region": "us-east-1"
+        }, 
+        "subnet-7780664a": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-a98d6ecd", 
+          "is_default": true, 
+          "region": "us-east-1"
+        }, 
+        "subnet-aa99d0f3": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-a98d6ecd", 
+          "is_default": true, 
+          "region": "us-east-1"
+        }, 
+        "subnet-c82c51e3": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-a98d6ecd", 
+          "is_default": true, 
+          "region": "us-east-1"
+        }, 
+        "subnet-d4182ea3": {
+          "cidr_block": "172.31.0.0/16", 
+          "id": "vpc-a98d6ecd", 
+          "is_default": true, 
+          "region": "us-east-1"
+        }
+      }
+    }
+  }, 
+  "ami_d05e75b8": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "ec2": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "i-3e62a6ea": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "key_xxx": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "local-14-test01.amazon.school-adm.ru": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "security_group_default": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "security_group_local_14_api": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "security_group_local_14_data": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "tag_Ansible_configured": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "tag_Domain_amazon_school_adm_ru_": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "tag_Name_local_14_test01": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "tag_Roles_data_api": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "type_t2_micro": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "us-east-1": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "us-east-1c": [
+    "local-14-test01.amazon.school-adm.ru"
+  ], 
+  "vpc_id_vpc_8d8249e9": [
+    "local-14-test01.amazon.school-adm.ru"
+  ]
+}
