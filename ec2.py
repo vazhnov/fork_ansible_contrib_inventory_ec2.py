@@ -231,6 +231,11 @@ class Ec2Inventory(object):
         else:
             self.regions = configRegions.split(",")
 
+        # Add variables ansible_host and ansible_ssh_host?
+        self.add_var_ansible_host = False
+        if config.has_option('ec2', 'add_var_ansible_host'):
+            self.add_var_ansible_host = config.getboolean('ec2', 'add_var_ansible_host')
+
         # Destination addresses
         self.destination_variable = config.get('ec2', 'destination_variable')
         self.vpc_destination_variable = config.get('ec2', 'vpc_destination_variable')
@@ -1122,6 +1127,10 @@ class Ec2Inventory(object):
         for key in vars(instance):
             value = getattr(instance, key)
             key = self.to_safe('ec2_' + key)
+
+            if key == 'ec2_ip_address' and self.add_var_ansible_host:
+                instance_vars['ansible_ssh_host'] = value
+                instance_vars['ansible_host'] = value
 
             # Handle complex types
             # state/previous_state changed to properties in boto in https://github.com/boto/boto/commit/a23c379837f698212252720d2af8dec0325c9518

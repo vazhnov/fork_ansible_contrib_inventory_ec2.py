@@ -22,6 +22,14 @@ You can disable this by configuration option:
 vpc_subnets = False
 ```
 
+### Set variables ansible_host and ansible_ssh_host
+
+Variables `ansible_ssh_host` and `ansible_host` (for compatibility with Ansible v2) can be appended in every hostvars (copied from `ec2_ip_address`), so you can see names from EC2 tags, but connect to ip addresses.
+You can enable this by configuration option:
+```ini
+add_var_ansible_host = True
+```
+
 ## ToDo
 
 * Add groups by state (running, stopped);
