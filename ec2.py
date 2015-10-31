@@ -632,7 +632,8 @@ class Ec2Inventory(object):
             if self.tag_destination_variable.find(u','):
                 dest = ''
                 for i in self.tag_destination_variable.split(u','):
-                    dest = dest + instance.tags[i] + u'.'
+                    if i in instance.tags:
+                        dest = dest + instance.tags[i] + u'.'
             else:
                 dest = instance.tags[self.tag_destination_variable]
             while dest.endswith(u'.'):

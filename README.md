@@ -6,7 +6,7 @@ Because of too much unwanted pulls to original Ansible dynamic inventory script 
 
 ### tag_destination_variable
 
-You can use list of tags, separated by commas.
+You can use list of tags, separated by commas. Absent tags are ignored.
 Example usage:
 ```ini
 tag_destination_variable = Name,Domain
