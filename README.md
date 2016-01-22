@@ -21,6 +21,7 @@ You can disable this by configuration option:
 ```ini
 vpc_subnets = False
 ```
+Will be replaced by module [ec2_vpc_subnet_facts](https://docs.ansible.com/ansible/ec2_vpc_subnet_facts_module.html) in Ansible v2.1.
 
 ### Set variables ansible_host and ansible_ssh_host
 
