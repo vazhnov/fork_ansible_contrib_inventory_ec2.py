@@ -35,6 +35,10 @@ add_var_ansible_host = True
 
 * Add groups by state (running, stopped);
 
+## Another forks:
+
+* [ansible-ec2-inventory](https://pypi.python.org/pypi/ansible-ec2-inventory) — you can install from pip;
+
 ## P.S.
 
 I'm not Python/Ansible developer, just a system administrator.
