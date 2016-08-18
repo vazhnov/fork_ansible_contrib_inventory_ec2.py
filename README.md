@@ -6,12 +6,9 @@ Because of too much unwanted pulls to original Ansible dynamic inventory script 
 
 ### tag_destination_variable
 
-You can use list of tags, separated by commas. Absent tags are ignored.
-Example usage:
-```ini
-tag_destination_variable = Name,Domain
-```
-If ec2 tags is «Name=srv01», «Domain=example.com.», then resulted hostname is «srv01.example.com», without any last dot (cutted by code).
+This option has been deleted, because of [new options in upstream](https://github.com/ansible/ansible/pull/10385):
+* `destination_format`
+* `destination_format_tags`
 
 ### vpc_subnets
 
